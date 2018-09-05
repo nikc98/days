@@ -6,7 +6,7 @@
 /*   By: vjory-ca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 17:48:07 by vjory-ca          #+#    #+#             */
-/*   Updated: 2018/09/05 17:48:27 by vjory-ca         ###   ########.fr       */
+/*   Updated: 2018/09/05 19:09:10 by vjory-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,10 @@
 
 void	ft_list_clear(t_list **begin_list)
 {
-	t_list	*new;
-	t_list	*tmp;
-
-	new = *begin_list;
-	while (begin_list)
+	if (begin_list && *begin_list)
 	{
-		tmp = new;
-		free(new);
-		new = tmp->next;
+		ft_list_clear(&(*begin_list)->next);
+		free(*begin_list);
+		*begin_list = NULL;
 	}
-	*begin_list = NULL;
 }

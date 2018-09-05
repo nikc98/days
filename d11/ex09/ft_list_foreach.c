@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_last.c                                     :+:      :+:    :+:   */
+/*   ft_list_foreach.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vjory-ca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/05 17:39:31 by vjory-ca          #+#    #+#             */
-/*   Updated: 2018/09/05 18:56:30 by vjory-ca         ###   ########.fr       */
+/*   Created: 2018/09/05 19:45:57 by vjory-ca          #+#    #+#             */
+/*   Updated: 2018/09/05 20:17:05 by vjory-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
 #include "ft_list.h"
 
-t_list	*ft_list_last(t_list *begin_list)
-{
-	t_list *new;
+#include <stdlib.h>
 
+void	ft_list_foreach(t_list *begin_list, void (*f)(void *))
+{
 	if (begin_list == NULL)
-		return (NULL);
-	new = begin_list;
-	while (new)
-		new = new->next;
-	return (new);
+		return ;
+	while (begin_list)
+	{
+		(*f)(begin_list->data);
+		begin_list = begin_list->next;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: vjory-ca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 17:41:37 by vjory-ca          #+#    #+#             */
-/*   Updated: 2018/09/05 18:31:41 by vjory-ca         ###   ########.fr       */
+/*   Updated: 2018/09/05 18:59:25 by vjory-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,15 @@ t_list	*ft_list_push_params(int ac, char **av)
 
 	if (ac < 1)
 		return (NULL);
-	tmp = ft_create_elem(av[ac - 1]);
+	tmp = ft_create_elem(av[--ac]);
 	if (tmp == NULL)
 		return (NULL);
 	new = tmp;
-	while (ac > 0 && (new->next = *ft_create_elem(av[--ac]) != NULL))
+	new->next = *ft_create_elem(av[--ac]);
+	while (ac > 0 && new != NULL)
+	{
 		new = new->next;
+		ac--;
+	}
 	return (tmp);
 }
