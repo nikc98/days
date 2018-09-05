@@ -1,0 +1,19 @@
+#include <stdlib.h>
+
+#inclide "ft_list.h"
+
+t_list	*ft_list_last(t_list *begin_list)
+{
+    t_list *new;
+
+    if (begin_list == NULL)
+	return (NULL);
+    new = begin_list;
+    while (new)
+    {
+	if (new->next == NULL)
+	    return (new);
+	new = new->next;
+    }
+    return (NULL);
+}
