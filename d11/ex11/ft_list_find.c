@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_push_back.c                                :+:      :+:    :+:   */
+/*   ft_list_find.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vjory-ca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/05 17:37:07 by vjory-ca          #+#    #+#             */
-/*   Updated: 2018/09/05 21:26:03 by vjory-ca         ###   ########.fr       */
+/*   Created: 2018/09/05 20:40:41 by vjory-ca          #+#    #+#             */
+/*   Updated: 2018/09/05 20:46:32 by vjory-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
 #include "ft_list.h"
 
-void	ft_list_push_back(t_list **begin_list, void *data)
-{
-	t_list *node;
-	t_list *new;
+#include <stdlib.h>
 
+t_list	*ft_list_find(t_list *begin_list, void *data_ref, int (*cmp)())
+{
 	if (begin_list == NULL)
-		return ;
-	new = ft_create_elem(data);
-	if (new == NULL)
-		return ;
-	if (*begin_list == NULL)
-		*begin_list = new;
-	else
+		return (NULL);
+	while (begin_list)
 	{
-		node = *begin_list;
-		while (node->next != NULL)
-			node = node->next;
-		node->next = new;
+		if ((*cmp)(begin_list, data_ref) == 0)
+			return (data_ref);
+		begin_list = begin_list->next;
 	}
+	return (NULL);
 }

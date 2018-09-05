@@ -6,7 +6,7 @@
 /*   By: vjory-ca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 17:39:31 by vjory-ca          #+#    #+#             */
-/*   Updated: 2018/09/05 18:56:30 by vjory-ca         ###   ########.fr       */
+/*   Updated: 2018/09/05 21:31:40 by vjory-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_list	*ft_list_last(t_list *begin_list)
 	if (begin_list == NULL)
 		return (NULL);
 	new = begin_list;
-	while (new)
+	while (new->next)
 		new = new->next;
 	return (new);
 }
