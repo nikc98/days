@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_foreach.c                                  :+:      :+:    :+:   */
+/*   ft_list_foreach_if.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vjory-ca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/05 19:45:57 by vjory-ca          #+#    #+#             */
-/*   Updated: 2018/09/05 20:17:05 by vjory-ca         ###   ########.fr       */
+/*   Created: 2018/09/05 19:57:55 by vjory-ca          #+#    #+#             */
+/*   Updated: 2018/09/05 22:17:58 by vjory-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 #include <stdlib.h>
 
-void	ft_list_foreach(t_list *begin_list, void (*f)(void *))
+void	ft_list_foreach_if(t_list *begin_list, void (*f)(void *),
+						void *data_ref, int (*cmp)(void *, void *))
 {
-	if (begin_list == NULL)
-		return ;
 	while (begin_list)
 	{
-		(*f)(begin_list->data);
+		if ((*cmp)(begin_list->data, data_ref) == 0)
+			(*f)(begin_list->data);
 		begin_list = begin_list->next;
 	}
 }
